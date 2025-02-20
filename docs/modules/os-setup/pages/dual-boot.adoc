@@ -157,7 +157,7 @@ NOTE: Do NOT meddle with partitions 1 and 4, EFI and Recovery: you need to
 retain the ability to restore Windows in case something goes wrong.
 
 .Read more about these partitions.
-[%collapsible%]
+[%collapsible]
 ====
 The EFI (Extensible Firmware Interface) is a special partition on your
 computer’s hard disk or solid-state drive (SSD) that is used to store
@@ -234,7 +234,7 @@ and select “Properties“.
 recycle bin), then click “OK“ and confirm the deletion.
 
 .We recommend at least 35-50GB so that you can safely install the programs you’ll need for this course and save your code.
-[%collapsible%]
+[%collapsible]
 ====
 You may have noticed that the Ubuntu website states that you need a
 laptop or PC with at least 25GB of free disk space, but we recommend
@@ -254,8 +254,8 @@ image::unallocated.png[New unallocated disk partition, 90%]
 
 === 5 | Dual-booting
 
-Now, you need to access the BIOS and change the boot priority so that 
-the bootable Ubuntu USB flash drive you created earlier is the first 
+Now, you need to access the BIOS and change the boot priority so that
+the bootable Ubuntu USB flash drive you created earlier is the first
 device to boot.
 
 Before you do this, make sure to google the correct key or combination
@@ -265,10 +265,10 @@ the make and/or model of your computer.
 
 [arabic]
 . Make sure the bootable flash drive is plugged into your computer.
-. Shut down and restart your computer. While it's starting up, press 
-the key or key combination (Fn + F2 on a Lenovo laptop) repeatedly. 
+. Shut down and restart your computer. While it's starting up, press
+the key or key combination (Fn + F2 on a Lenovo laptop) repeatedly.
 You may need to try this a few times before it works.
-. This will take you to your computer's BIOS settings. Look for instructions 
+. This will take you to your computer's BIOS settings. Look for instructions
 on how to navigate the BIOS settings and make changes on each screen.
 . You want to change the boot priority in the BIOS. Navigate to the Boot
 (or Boot Priority) tab. There, you will find your available devices.

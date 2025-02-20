@@ -1,11 +1,7 @@
 = Tutorials
-:page-layout: component
 
 Hello, *learner*.
 
 Here is a set of tutorials that will make your learning experience much easier and help you overcome any doubts you may have about the tools you’ve been using. They are designed to simplify complex concepts and guide you step by step.
 
 Come here if you need anything installed or configured.
-
-
-
