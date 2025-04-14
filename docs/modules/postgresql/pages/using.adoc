@@ -18,13 +18,13 @@ $ psql postgres -U <username>
 +
 [source,bash]
 ----
- $ postgres=> CREATE DATABASE <my_database>;
+$ postgres=> CREATE DATABASE <my_database>;
 ----
 . Exit.
 +
 [source, bash]
 ----
-postres => \q
+$ postres => \q
 ----
 
 . Enter the database you’ve created directly.
