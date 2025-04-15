@@ -84,12 +84,14 @@ $ sudo -iu postgres psql
 # For MacOS
 $ psql postgres
 ----
-. Create a new user with a specific role attribute (create databases). 
+. Create a new user with a specific role attribute (create databases) and a password. 
+
 +
 [source,bash]
 ----
-$ postgres=# CREATE ROLE <username> LOGIN CREATEDB;
+$ postgres=# CREATE ROLE <username> WITH LOGIN PASSWORD 'yourpassword' CREATEDB;
 ----
+NOTE: Make sure to choose a username and password you'll remember — you'll need them later.
 . Exit the `psql` command line interface. 
 +
 [source,bash]
