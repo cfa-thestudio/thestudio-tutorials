@@ -60,7 +60,7 @@ command in the following table:
 |Maven |brew install maven
 |Postman |brew install –cask postman
 |PostgreSQL |brew install postgresql@15
-|Tomcat |brew install tomcat
+|Tomcat |brew install tomcat@10
 |Zoom |brew install –cask zoom
 |===
 
