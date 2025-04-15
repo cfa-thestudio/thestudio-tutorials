@@ -52,16 +52,16 @@ command in the following table:
 |===
 |software |command
 |Git |brew install git
-|Visual Studio Code |brew install –cask visual-studio-code
+|Visual Studio Code |brew install -–cask visual-studio-code
 |Node.js |brew install node
 |JDK 17 |brew install openjdk@17
-|IntelliJ Idea |brew install –cask intellij-idea
+|IntelliJ Idea |brew install –-cask intellij-idea
 |Ant |brew install ant
 |Maven |brew install maven
-|Postman |brew install –cask postman
+|Postman |brew install –-cask postman
 |PostgreSQL |brew install postgresql@15
 |Tomcat |brew install tomcat@10
-|Zoom |brew install –cask zoom
+|Zoom |brew install –-cask zoom
 |===
 
 NOTE: The `--cask` option is used with the `brew` command to interact with
