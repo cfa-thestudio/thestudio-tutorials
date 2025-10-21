@@ -50,3 +50,10 @@ image::bootstrap-project-structure.png[Project structure example]
 <script src="js/index.js" defer></script>
 ----
 
+=== Using npm
+
+`npm` (Node Package Manager) is a tool that lets you install, manage, and update JavaScript libraries and packages, including Bootstrap. It comes bundled with Node.js and is widely used in modern web development workflows.
+
+NOTE: If you're working with a modern JavaScript project using a build tool or module bundler (like Vite, Webpack, or Parcel), you can install Bootstrap via npm instead of downloading the files manually. Other package manager options are available https://getbootstrap.com/docs/5.3/getting-started/download/#package-managers[here, window=_blank].
+
+
