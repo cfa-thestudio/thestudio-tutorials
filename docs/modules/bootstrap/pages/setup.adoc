@@ -3,11 +3,11 @@
 
 You can add Bootstrap to your project using a **CDN** or by **downloading locally**.
 
-== Option 1: Include via CDN
+== Include via CDN
 
 A Content Delivery Network (CDN) is a network of servers distributed around the world that delivers files (like CSS, JavaScript, or images) to users from the server closest to them. Using a CDN for Bootstrap means your website can load the framework’s files faster, reduce server load, and benefit from automatic updates and caching.
 
-You can add the following `+<link>+` and `<+script+>` elements: 
+You can add the following `+<link>+` and `+<script>+` elements: 
 
 [source,html]
 ----
@@ -17,7 +17,7 @@ You can add the following `+<link>+` and `<+script+>` elements:
 
 NOTE: defer ensures scripts load after the HTML
 
-== Option 2: Download Locally
+== Download Locally
 
 1. Go to https://getbootstrap.com  
 2. Download the compiled CSS and JS files.  
