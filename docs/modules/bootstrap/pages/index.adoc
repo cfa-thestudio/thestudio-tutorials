@@ -1,0 +1,18 @@
+= Bootstrap
+:navtitle: Bootstrap
+:description: Learn how to use Bootstrap CSS framework in your projects.
+:keywords: bootstrap, css, frontend, tutorial
+
+Bootstrap is a popular open-source CSS framework that helps developers build responsive, mobile-first websites quickly.  
+It provides a collection of prebuilt CSS classes, components, and utilities, allowing you to create visually appealing layouts without writing all the CSS from scratch.
+
+With Bootstrap, you can:
+
+* Include Bootstrap in your project via CDN or locally
+* Use the responsive grid system to organize your layouts
+* Apply prebuilt components like buttons, forms, modals, and alerts
+
+This tutorial will guide you through:
+
+* xref:setup.adoc[Importing Bootstrap into your project]
+* xref:using.adoc[Using the basics of Bootstrap for styling and layout]

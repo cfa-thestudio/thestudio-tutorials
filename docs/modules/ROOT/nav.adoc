@@ -25,6 +25,11 @@
 
 * xref:glossary:index.adoc[Glossary]
 
+// Bootstrap
+* xref:bootstrap:index.adoc[Bootstrap]
+** xref:bootstrap:setup.adoc[Importing Bootstrap]
+** xref:bootstrap:using.adoc[Using Bootstrap]
+
 // the studio
 // * xref:github:github.adoc[github]
 // ** xref:github:github_quick_start.adoc[quick start]
