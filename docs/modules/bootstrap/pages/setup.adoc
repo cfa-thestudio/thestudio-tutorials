@@ -36,4 +36,17 @@ You can either **download the compiled files manually** or **install Bootstrap v
 3. Place them in your project folders, for example:
 
 image::bootstrap-project-structure.png[Project structure example]
+[start=4]
+. Link the files in your HTML. Make sure your **custom CSS** comes *after* Bootstrap, and your **custom JS** comes *after* Bootstrap’s bundle, so overrides and scripts work correctly:
+
+[source,html]
+----
+<!-- In the <head> -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/custom.css">
+
+<!-- Before closing </body> -->
+<script src="js/bootstrap.bundle.js" defer></script>
+<script src="js/index.js" defer></script>
+----
 
