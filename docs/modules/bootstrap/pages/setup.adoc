@@ -17,11 +17,12 @@ To use Bootstrap via CDN, you need to include:
 [source,html]
 ----
 <!-- In the <head> -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Before closing </body> or in <head> with defer -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
 ----
+
 
 NOTE: Using `defer` ensures that the JavaScript is executed only after the HTML has been fully parsed, preventing errors if scripts try to access elements that haven’t loaded yet.
 
