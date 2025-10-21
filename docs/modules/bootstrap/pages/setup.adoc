@@ -23,12 +23,17 @@ To use Bootstrap via CDN, you need to include:
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
 ----
 
-
 NOTE: Using `defer` ensures that the JavaScript is executed only after the HTML has been fully parsed, preventing errors if scripts try to access elements that haven’t loaded yet.
 
 == Download Locally
 
-1. Go to https://getbootstrap.com  
+You can either **download the compiled files manually** or **install Bootstrap via npm** if you're using a build tool.
+
+=== Manual Download
+
+1. Go to https://getbootstrap.com[window=_blank]  
 2. Download the compiled CSS and JS files.  
-3. Place them in your project’s `css/` and `js/` folders.  
-4. Link them in your HTML files.
+3. Place them in your project folders, for example:
+
+image::bootstrap-project-structure.png[Project structure example]
+
