@@ -1,10 +1,17 @@
 = Using Bootstrap
 :navtitle: Using Bootstrap
 
-Now that Bootstrap is added to your project, let’s see how it helps you *build and style* pages quickly.  
-You don’t need to memorize every class — the key is understanding how Bootstrap lets you control layout and design using small, reusable class names.
+Now that Bootstrap is added to your project, let’s go beyond setup and understand *how to think and work* with it.  
+Bootstrap is more than just a collection of styles — it’s a way of building responsive, consistent layouts using simple class names.
 
-== Containers and Basic Structure
+We’ll start by understanding how Bootstrap’s classes and patterns work, then apply them to real examples.
+
+== Understanding How Bootstrap Works
+
+Before diving into building layouts, let’s look at the ideas behind Bootstrap — containers, utility classes, and naming patterns.  
+Once you understand these, everything else in Bootstrap becomes much easier.
+
+=== Containers and Basic Structure
 
 Most Bootstrap layouts start with a **container**.  
 It centers your content and adds consistent horizontal padding, so everything lines up neatly on different screen sizes.
@@ -21,7 +28,7 @@ Here, classes like `mt-4` (margin top), `text-center`, and `text-primary` show h
 
 NOTE: You’ll start to recognize patterns — Bootstrap’s class naming is designed to be consistent and guessable.
 
-== Thinking in Classes, Not CSS
+=== Thinking in Classes, Not CSS
 
 With Bootstrap, you often don’t need to write your own CSS right away.  
 Instead, you describe what you want using **utility classes** — small, single-purpose helpers for spacing, colors, alignment, and more.
@@ -55,13 +62,13 @@ Instead, you describe what you want using **utility classes** — small, single-
 
 These classes act like shortcuts — combine them freely to get the spacing and style you need without touching a CSS file.
 
-== Understanding Class Names
+=== Understanding Class Names and Breakpoints
 
 Bootstrap’s utility class system follows a simple pattern:
 `{property}{side?}-{size?}`
 
-
 Examples:
+
 * `mt-4` → margin-top, spacing size 4  
 * `py-2` → padding top & bottom (y-axis), spacing size 2  
 
@@ -89,11 +96,14 @@ They represent screen sizes where the layout changes:
 | Extra large (desktops)
 |===
 
-
 Example:  
 `col-md-6` means the element takes up half the width (6 columns) on medium screens and larger — and becomes full width on smaller screens.
 
-== Working with the Grid System
+== Applying Bootstrap in Layouts
+
+Now that you understand the building blocks, let’s use them to create responsive layouts and reusable components.
+
+=== Working with the Grid System
 
 The **grid system** is one of Bootstrap’s most useful features for creating responsive layouts.
 
@@ -121,7 +131,7 @@ What’s happening here:
 
 You can mix and match column widths, stack them on smaller screens, and nest rows for more complex layouts — all without custom CSS.
 
-== Adding Components
+=== Adding Components
 
 Bootstrap includes ready-made **components** like buttons, alerts, and cards.  
 They’re designed to work well together and follow consistent styling.
@@ -157,4 +167,3 @@ You don’t need to memorize everything — Bootstrap’s documentation is full 
 * https://getbootstrap.com/docs/5.3/examples/[Example Gallery, window=_blank]
 
 TIP: When you find a design you like in the docs, right-click → “Inspect” — you’ll see which classes they used. Copy, tweak, and learn from it!
-
