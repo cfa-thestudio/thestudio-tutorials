@@ -33,7 +33,7 @@ NOTE: You’ll start to recognize patterns — Bootstrap’s class naming is des
 With Bootstrap, you often don’t need to write your own CSS right away.  
 Instead, you describe what you want using **utility classes** — small, single-purpose helpers for spacing, colors, alignment, and more.
 
-.Examples of Common Utility Classes
+Examples of Common Utility Classes:
 [cols="1,2", options="header"]
 |===
 | Want to... | Use this class
@@ -158,6 +158,56 @@ They’re designed to work well together and follow consistent styling.
   </div>
 </div>
 ----
+
+=== Adding Interactivity with Bootstrap JavaScript
+
+Bootstrap isn’t just about styling — it also includes built-in JavaScript to make components interactive.  
+You’ve already added the Bootstrap JS bundle in the setup step (with `<script>`), so these features are ready to use.
+
+With that in place, you can add interactivity to your HTML using simple `data-bs-*` attributes — no custom JavaScript needed.
+
+For example, here’s a button that shows a dismissible alert:
+
+[source,html]
+----
+<div class="container mt-4">
+  <h2>Interactive Example</h2>
+
+  <!-- Button trigger -->
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#demoModal">
+    Show Message
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="demoModalLabel">Heads up!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          This popup works thanks to Bootstrap’s built-in JavaScript — no custom code needed!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+----
+
+Here’s what’s happening:
+
+* The `data-bs-toggle="modal"` attribute tells Bootstrap this button will trigger a modal.  
+* The `data-bs-target="#demoModal"` attribute specifies which modal element to show.  
+* The modal itself uses classes like `.fade` (for a smooth transition) and `.modal-dialog`/`.modal-content` to structure the popup.  
+* The buttons inside the modal use `data-bs-dismiss="modal"` to close it — no custom JavaScript needed.  
+* Since you already included the Bootstrap JS bundle in the setup step, all of this works automatically.
+
+NOTE: You can use the same pattern for other interactive components like dropdowns, tooltips, and collapses. Bootstrap handles the behavior for you via `data-bs-*` attributes.
+
 
 == Learn More and Explore
 
