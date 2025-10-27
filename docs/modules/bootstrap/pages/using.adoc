@@ -1,12 +1,13 @@
 = Using Bootstrap
 :navtitle: Using Bootstrap
 
-Now that Bootstrap is added to your project, let’s learn how to actually *use* it to build pages quickly.  
-The goal isn’t to memorize every class — it’s to understand how Bootstrap helps you layout and style your HTML using simple, reusable class names.
+Now that Bootstrap is added to your project, let’s see how it helps you *build and style* pages quickly.  
+You don’t need to memorize every class — the key is understanding how Bootstrap lets you control layout and design using small, reusable class names.
 
-== 1. Start with a Container
+== Containers and Basic Structure
 
-Most Bootstrap pages start with a container — it gives your content proper spacing and alignment.
+Most Bootstrap layouts start with a **container**.  
+It centers your content and adds consistent horizontal padding, so everything lines up neatly on different screen sizes.
 
 [source,html]
 ----
@@ -16,68 +17,14 @@ Most Bootstrap pages start with a container — it gives your content proper spa
 </div>
 ----
 
-You’ll see classes like `container`, `mt-4`, and `text-center`.  
-Bootstrap uses these small utility classes for spacing (`m` for margin, `p` for padding) and alignment (`text-center`, `text-start`, etc.).  
+Here, classes like `mt-4` (margin top), `text-center`, and `text-primary` show how Bootstrap uses short, readable names to apply spacing, alignment, and color.
 
-NOTE: You’ll start recognizing patterns — Bootstrap’s naming system is very consistent.
+NOTE: You’ll start to recognize patterns — Bootstrap’s class naming is designed to be consistent and guessable.
 
-== 2. Build a Layout with the Grid System
+== Thinking in Classes, Not CSS
 
-Bootstrap’s grid is the heart of its layout system.  
-You place elements inside `.row` and `.col` containers — and Bootstrap handles the sizing and responsiveness.
-
-[source,html]
-----
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="p-3 bg-light border rounded">Left side</div>
-    </div>
-    <div class="col-md-6">
-      <div class="p-3 bg-light border rounded">Right side</div>
-    </div>
-  </div>
-</div>
-----
-
-Here’s how it works:
-
-* `.row` creates a horizontal group of columns.
-* `.col-md-6` makes two equal columns on medium screens (≥768px) and larger.
-* On smaller screens, columns automatically stack vertically — no extra code needed!
-
-== 3. Add Some Components
-
-Bootstrap includes ready-to-use building blocks like buttons, alerts, and cards.  
-You can drop them right into your HTML and combine them with layout classes.
-
-[source,html]
-----
-<div class="container mt-4">
-  <h2>Common Components</h2>
-
-  <button class="btn btn-primary">Primary Button</button>
-  <button class="btn btn-outline-secondary">Outline Button</button>
-
-  <div class="alert alert-success mt-3" role="alert">
-    This is a success alert — it uses color and spacing built into Bootstrap.
-  </div>
-
-  <div class="card mt-4" style="width: 18rem;">
-    <img src="https://via.placeholder.com/286x180" class="card-img-top" alt="Example image">
-    <div class="card-body">
-      <h5 class="card-title">Example Card</h5>
-      <p class="card-text">Cards group related content in a clean layout.</p>
-      <a href="#" class="btn btn-primary">Learn more</a>
-    </div>
-  </div>
-</div>
-----
-
-== 4. Think in Classes, Not Custom CSS
-
-The key idea with Bootstrap is:  
-instead of writing your own CSS right away, see if a Bootstrap class already does what you need.
+With Bootstrap, you often don’t need to write your own CSS right away.  
+Instead, you describe what you want using **utility classes** — small, single-purpose helpers for spacing, colors, alignment, and more.
 
 .Examples of Common Utility Classes
 [cols="1,2", options="header"]
@@ -106,42 +53,108 @@ instead of writing your own CSS right away, see if a Bootstrap class already doe
 | `bg-light`, `bg-dark`, `bg-primary`
 |===
 
+These classes act like shortcuts — combine them freely to get the spacing and style you need without touching a CSS file.
 
-These utilities are like shortcuts — combine them freely.
+== Understanding Class Names
 
-== 5. Understanding Class Names
+Bootstrap’s utility class system follows a simple pattern:
+`{property}{side?}-{size?}`
 
-Bootstrap class names often follow a pattern:
 
-`{property}{side?}-{size?}` 
+Examples:
+* `mt-4` → margin-top, spacing size 4  
+* `py-2` → padding top & bottom (y-axis), spacing size 2  
+
+For responsive layouts, Bootstrap adds *breakpoints* such as `sm`, `md`, `lg`, and so on.  
+They represent screen sizes where the layout changes:
+
+[cols="1,1,2", options="header"]
+|===
+| Breakpoint | Width | Example usage
+
+| `sm`
+| ≥576px
+| Small devices (phones)
+
+| `md`
+| ≥768px
+| Medium devices (tablets)
+
+| `lg`
+| ≥992px
+| Large devices (laptops)
+
+| `xl`
+| ≥1200px
+| Extra large (desktops)
+|===
+
 
 Example:  
-`mt-4` = margin-top, spacing size 4  
-`py-2` = padding top & bottom (y-axis), spacing size 2
+`col-md-6` means the element takes up half the width (6 columns) on medium screens and larger — and becomes full width on smaller screens.
 
-Breakpoints add responsiveness:
+== Working with the Grid System
 
-col-md-6 → column 6 units wide on medium (≥768px) screens and up
+The **grid system** is one of Bootstrap’s most useful features for creating responsive layouts.
 
-You can change how things behave at different screen sizes by swapping `sm`, `md`, `lg`, etc.
+You place content inside `.row` and `.col` containers, and Bootstrap automatically handles the layout across screen sizes.
 
-== 6. Learn More and Explore
+[source,html]
+----
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="p-3 bg-light border rounded">Left side</div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-3 bg-light border rounded">Right side</div>
+    </div>
+  </div>
+</div>
+----
 
-You don’t need to memorize everything — Bootstrap’s documentation is your friend.  
+What’s happening here:
+
+* `.row` creates a horizontal group of columns.  
+* `.col-md-6` gives you two equal columns on medium screens and larger.  
+* On smaller screens, the columns automatically stack vertically.
+
+You can mix and match column widths, stack them on smaller screens, and nest rows for more complex layouts — all without custom CSS.
+
+== Adding Components
+
+Bootstrap includes ready-made **components** like buttons, alerts, and cards.  
+They’re designed to work well together and follow consistent styling.
+
+[source,html]
+----
+<div class="container mt-4">
+  <h2>Common Components</h2>
+
+  <button class="btn btn-primary">Primary Button</button>
+  <button class="btn btn-outline-secondary">Outline Button</button>
+
+  <div class="alert alert-success mt-3" role="alert">
+    This is a success alert — it uses color and spacing built into Bootstrap.
+  </div>
+
+  <div class="card mt-4" style="width: 18rem;">
+    <img src="https://via.placeholder.com/286x180" class="card-img-top" alt="Example image">
+    <div class="card-body">
+      <h5 class="card-title">Example Card</h5>
+      <p class="card-text">Cards group related content in a clean layout.</p>
+      <a href="#" class="btn btn-primary">Learn more</a>
+    </div>
+  </div>
+</div>
+----
+
+== Learn More and Explore
+
+You don’t need to memorize everything — Bootstrap’s documentation is full of examples and patterns you can copy and adapt.
 
 * https://getbootstrap.com/docs/5.3/getting-started/introduction/[Official Docs, window=_blank]
 * https://getbootstrap.com/docs/5.3/examples/[Example Gallery, window=_blank]
 
 TIP: When you find a design you like in the docs, right-click → “Inspect” — you’ll see which classes they used. Copy, tweak, and learn from it!
 
-== Practice
-
-As a quick exercise, try building a simple layout:
-
-* A container with a centered heading  
-* Two columns (`col-md-6`) with cards inside  
-* Add spacing and colors using Bootstrap utility classes  
-
-No CSS file needed — just Bootstrap and a little HTML!
-
----
