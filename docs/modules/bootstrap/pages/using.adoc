@@ -1,0 +1,147 @@
+= Using Bootstrap
+:navtitle: Using Bootstrap
+
+Now that Bootstrap is added to your project, let’s learn how to actually *use* it to build pages quickly.  
+The goal isn’t to memorize every class — it’s to understand how Bootstrap helps you layout and style your HTML using simple, reusable class names.
+
+== 1. Start with a Container
+
+Most Bootstrap pages start with a container — it gives your content proper spacing and alignment.
+
+[source,html]
+----
+<div class="container">
+  <h1 class="mt-4 text-center text-primary">Welcome to Bootstrap</h1>
+  <p class="lead text-center">A quick way to style your pages with clean, responsive design.</p>
+</div>
+----
+
+You’ll see classes like `container`, `mt-4`, and `text-center`.  
+Bootstrap uses these small utility classes for spacing (`m` for margin, `p` for padding) and alignment (`text-center`, `text-start`, etc.).  
+
+NOTE: You’ll start recognizing patterns — Bootstrap’s naming system is very consistent.
+
+== 2. Build a Layout with the Grid System
+
+Bootstrap’s grid is the heart of its layout system.  
+You place elements inside `.row` and `.col` containers — and Bootstrap handles the sizing and responsiveness.
+
+[source,html]
+----
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="p-3 bg-light border rounded">Left side</div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-3 bg-light border rounded">Right side</div>
+    </div>
+  </div>
+</div>
+----
+
+Here’s how it works:
+
+* `.row` creates a horizontal group of columns.
+* `.col-md-6` makes two equal columns on medium screens (≥768px) and larger.
+* On smaller screens, columns automatically stack vertically — no extra code needed!
+
+== 3. Add Some Components
+
+Bootstrap includes ready-to-use building blocks like buttons, alerts, and cards.  
+You can drop them right into your HTML and combine them with layout classes.
+
+[source,html]
+----
+<div class="container mt-4">
+  <h2>Common Components</h2>
+
+  <button class="btn btn-primary">Primary Button</button>
+  <button class="btn btn-outline-secondary">Outline Button</button>
+
+  <div class="alert alert-success mt-3" role="alert">
+    This is a success alert — it uses color and spacing built into Bootstrap.
+  </div>
+
+  <div class="card mt-4" style="width: 18rem;">
+    <img src="https://via.placeholder.com/286x180" class="card-img-top" alt="Example image">
+    <div class="card-body">
+      <h5 class="card-title">Example Card</h5>
+      <p class="card-text">Cards group related content in a clean layout.</p>
+      <a href="#" class="btn btn-primary">Learn more</a>
+    </div>
+  </div>
+</div>
+----
+
+== 4. Think in Classes, Not Custom CSS
+
+The key idea with Bootstrap is:  
+instead of writing your own CSS right away, see if a Bootstrap class already does what you need.
+
+.Examples of Common Utility Classes
+[cols="1,2", options="header"]
+|===
+| Want to... | Use this class
+
+| Add margin
+| `m-3`, `mt-4`, `mb-2`
+
+| Add padding
+| `p-3`, `py-2`
+
+| Center text
+| `text-center`
+
+| Round corners
+| `rounded`
+
+| Make something full width
+| `w-100`
+
+| Change text color
+| `text-danger`, `text-success`
+
+| Change background color
+| `bg-light`, `bg-dark`, `bg-primary`
+|===
+
+
+These utilities are like shortcuts — combine them freely.
+
+== 5. Understanding Class Names
+
+Bootstrap class names often follow a pattern:
+
+`{property}{side?}-{size?}` 
+
+Example:  
+`mt-4` = margin-top, spacing size 4  
+`py-2` = padding top & bottom (y-axis), spacing size 2
+
+Breakpoints add responsiveness:
+
+col-md-6 → column 6 units wide on medium (≥768px) screens and up
+
+You can change how things behave at different screen sizes by swapping `sm`, `md`, `lg`, etc.
+
+== 6. Learn More and Explore
+
+You don’t need to memorize everything — Bootstrap’s documentation is your friend.  
+
+* https://getbootstrap.com/docs/5.3/getting-started/introduction/[Official Docs, window=_blank]
+* https://getbootstrap.com/docs/5.3/examples/[Example Gallery, window=_blank]
+
+TIP: When you find a design you like in the docs, right-click → “Inspect” — you’ll see which classes they used. Copy, tweak, and learn from it!
+
+== Practice
+
+As a quick exercise, try building a simple layout:
+
+* A container with a centered heading  
+* Two columns (`col-md-6`) with cards inside  
+* Add spacing and colors using Bootstrap utility classes  
+
+No CSS file needed — just Bootstrap and a little HTML!
+
+---
