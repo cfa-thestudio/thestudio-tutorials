@@ -97,7 +97,8 @@ They represent screen sizes where the layout changes:
 |===
 
 Example:  
-`col-md-6` means the element takes up half the width (6 columns) on medium screens and larger — and becomes full width on smaller screens.
+`col-md-6` means the element takes up half the width (6 columns) on medium screens and larger — and becomes full width on smaller screens.  
+See the <<Working_with_the_Grid_System,Working with the Grid System>> section for more on how the grid divides rows into 12 columns and handles responsive layouts.
 
 == Applying Bootstrap in Layouts
 
@@ -105,7 +106,9 @@ Now that you understand the building blocks, let’s use them to create responsi
 
 === Working with the Grid System
 
-The **grid system** is one of Bootstrap’s most useful features for creating responsive layouts.
+The **grid system** is one of Bootstrap’s most useful features for creating responsive layouts. 
+Bootstrap’s grid system divides each row into **12 equal columns**, and you specify how many columns an element should span using classes like `col-6` (half width) or `col-4` (one third width). 
+Columns automatically resize and stack on smaller screens, and multiple columns in a row will wrap as needed if their total exceeds 12.
 
 You place content inside `.row` and `.col` containers, and Bootstrap automatically handles the layout across screen sizes.
 
@@ -126,10 +129,12 @@ You place content inside `.row` and `.col` containers, and Bootstrap automatical
 What’s happening here:
 
 * `.row` creates a horizontal group of columns.  
-* `.col-md-6` gives you two equal columns on medium screens and larger.  
-* On smaller screens, the columns automatically stack vertically.
+* `.col-md-6` makes each column take up half the row on medium screens and larger, and full width on smaller screens.  
+* You can mix and match column widths, stack them on smaller screens, and nest rows for more complex layouts — all without writing custom CSS.
 
-You can mix and match column widths, stack them on smaller screens, and nest rows for more complex layouts — all without custom CSS.
+NOTE: Despite being called a “grid,” Bootstrap’s grid system is based on **Flexbox**, not CSS Grid (`display: grid`). 
+It still uses rows and columns like a grid, but under the hood, `.row` uses `display: flex` to handle layout and responsiveness.
+
 
 === Adding Components
 
