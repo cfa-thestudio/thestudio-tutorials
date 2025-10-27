@@ -7,14 +7,20 @@
 [arabic]
 . Create a new Maven project and add web support.
 +
-[cols=".<a,.<a, .<a", frame=none, grid= none]
+[cols="a", frame=none, grid=none]
+
 |===
-| .1.1 Press `CTRL + SHIFT + A` (on Ubuntu) or `Cmd + SHIFT + A` (on MacOS) to open the "Find Action" window and select "All".
-image::find-action-window.png[Open "`Find Action Window`" and select "`All`"]
-| .1.2 Write "addframeworksupport" in the search box.
-image::add-framework-support-search.png[Write "`addframeworksupport`" in the search box]
-| .1.3 Check "`Web Application`" on "`Java EE`" and hit "`OK`"
-image::web-support.png[Check "`Web Application`" and hit "`OK`"]
+| 1.1. Press `CTRL + SHIFT + A` (on Ubuntu) or `Cmd + SHIFT + A` (on MacOS) to open the "Find Action Window" and select "All".
+
+image::find-action-window.png[Open "Find Action Window" and select "All"]
+
+| 1.2. Write "addframeworksupport" in the search box.
+
+image::add-framework-support-search.png[Write "addframeworksupport" in the search box]
+
+| 1.3. Check "Web Application" on "`Java EE`" and hit "OK".
+
+image::web-support.png[Check "Web Application" and hit "OK"]
 |===
 
 . This will create a new folder called `+web+`. Move it inside the
