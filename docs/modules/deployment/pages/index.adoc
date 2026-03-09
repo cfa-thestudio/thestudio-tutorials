@@ -1,0 +1,18 @@
+= Full Stack Deployment Guide
+:imagesdir: ../images
+:figure-caption!:
+
+This guide walks you through deploying your **full stack application**, including:
+
+* Database (PostgreSQL)
+* Backend (Spring + Tomcat)
+* Frontend (SPA on Netlify)
+
+After completing this guide, you will understand how to deploy a web service and its supporting database, and how to host a frontend application online.
+
+This guide contains the following sections:
+
+* xref:deployment-tools.adoc[Deployment Tools Overview]
+* xref:database-deployment.adoc[Database Deployment on Render]
+* xref:backend-deployment.adoc[Backend Deployment on Render]
+* xref:frontend-deployment.adoc[Frontend Deployment on Netlify]

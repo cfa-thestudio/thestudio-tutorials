@@ -45,3 +45,10 @@
 
 // * java
 // ** xref:java:updating.adoc[how to update java version]
+
+// Deployment
+* xref:deployment:index.adoc[Full Stack Deployment]
+** xref:deployment:deployment-tools.adoc[Deployment Tools Overview]
+** xref:deployment:database-deployment.adoc[Database Deployment on Render]
+** xref:deployment:backend-deployment.adoc[Backend Deployment on Render]
+** xref:deployment:frontend-deployment.adoc[Frontend Deployment on Netlify]

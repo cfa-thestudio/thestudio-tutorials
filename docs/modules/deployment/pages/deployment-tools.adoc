@@ -1,0 +1,73 @@
+= Deployment Tools Overview
+:imagesdir: ../images
+:figure-caption!:
+
+This page introduces the **tools and technologies** we use to deploy the Video Store application. 
+Understanding the stack helps you see how the frontend, backend, and database interact in a production environment.
+
+== Technology Stack
+
+The full stack of our example application includes:
+
+* **Database**
+** PostgreSQL managed on Render
+** Stores data securely
+
+* **Backend**
+** Java Spring application packaged as a WAR
+** Handles API requests, business logic, and database access
+
+* **Frontend**
+** Vanilla JavaScript Single Page Application (SPA)
+** Uses HTML, CSS, and JS modules
+** Handles client-side routing and fetches data from the backend
+
+
+== Render
+
+Render is a cloud hosting platform that we use to deploy the **backend** and **PostgreSQL database** for the Video Store application.
+
+* We are using the **free tier**, which is sufficient for learning and testing purposes.
+* PostgreSQL is fully managed by Render, so you don’t need to handle database setup or maintenance.
+* When deployed to Render, a Docker container runs the backend automatically, ensuring consistency between local and cloud environments.
+
+=== Docker
+Docker is a platform that packages an application and all its dependencies into a single container.
+
+* The backend runs inside a **pre-configured Tomcat server** inside the container.
+* All dependencies, including the **Java runtime** and server configuration, are bundled automatically.
+* Developers can test locally in the same environment as production.
+* Render handles running the container in the cloud, so no manual Docker setup is required.
+
+We provide a ready-to-use `+Dockerfile+` that:
+
+* Starts from a base image with the correct Java runtime
+* Installs Tomcat and copies the backend application (`.war` or compiled files)
+* Configures the container to run Tomcat automatically when started
+
+NOTE: You won’t need to interact directly with Docker for this tutorial. Render manages the container for you, letting you focus on coding and deployment concepts.
+
+
+https://render.com[*Render*] – Cloud hosting platform for backend and database
+
+
+== Netlify
+
+Netlify is a cloud platform for hosting **static frontend applications**, which we use for the Video Store SPA.
+
+* We are using the **free tier**, which allows quick deployment of static sites with continuous integration.
+* The SPA is deployed as HTML, CSS, and JS files; Netlify automatically applies the `_redirects` file so client-side routing works correctly.
+
+https://netlify.com[*Netlify*] – Cloud platform for hosting static frontend applications
+
+
+== GitHub
+
+[.note]
+All source code for the Video Store application is stored in a **single GitHub repository**. GitHub is integrated with both Render and Netlify to enable automated deployment:
+
+* Any commit pushed to the repository triggers Render to **redeploy the backend** and **update the database connection** if necessary.
+* The same commit triggers Netlify to **redeploy the frontend SPA**, ensuring that the latest changes are visible immediately.
+* This workflow allows you to focus on coding: committing and pushing code automatically updates both backend and frontend in the cloud.
+
+https://github.com[*GitHub*] – Version control platform used for source code and deployment integration
