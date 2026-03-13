@@ -57,18 +57,12 @@ We provide a ready-to-use `+Dockerfile+` that:
 
 NOTE: You won’t need to interact directly with Docker for this tutorial. Render manages the container for you, letting you focus on coding and deployment concepts.
 
-
-https://render.com[*Render*] – Cloud hosting platform for backend and database
-
-
 == Netlify
 
 Netlify is a cloud platform for hosting **static frontend applications**, which we use for the Video Store SPA.
 
 * We are using the **free tier**, which allows quick deployment of static sites with continuous integration.
 * The SPA is deployed as HTML, CSS, and JS files; Netlify automatically applies the `_redirects` file so client-side routing works correctly.
-
-https://netlify.com[*Netlify*] – Cloud platform for hosting static frontend applications
 
 
 == GitHub
@@ -80,4 +74,12 @@ All source code for the Video Store application is stored in a **single GitHub r
 * The same commit triggers Netlify to **redeploy the frontend SPA**, ensuring that the latest changes are visible immediately.
 * This workflow allows you to focus on coding: committing and pushing code automatically updates both backend and frontend in the cloud.
 
+
+== Resources
+https://render.com[*Render*] – Cloud hosting platform for backend and database
+
+https://netlify.com[*Netlify*] – Cloud platform for hosting static frontend applications
+
 https://github.com[*GitHub*] – Version control platform used for source code and deployment integration
+
+<TODO LINK HERE FOR VIDEOSTORE REPO> - Source code for the Video Store application
