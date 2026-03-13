@@ -5,6 +5,16 @@
 This page introduces the **tools and technologies** we use to deploy the Video Store application. 
 Understanding the stack helps you see how the frontend, backend, and database interact in a production environment.
 
+== Deployment Considerations
+
+The deployment approach shown in this tutorial works well for the **Video Store** example application, but **it should not be seen as a universal solution**. 
+
+Real-world deployment strategies vary depending on many factors, such as application size, expected traffic, security requirements, infrastructure costs, and team workflows.
+
+For example, larger systems might use container orchestration platforms like Kubernetes, dedicated CI/CD pipelines, multiple environments (development, staging, production), or cloud services from providers such as AWS, Azure, or Google Cloud. Other projects may require load balancing, caching layers, monitoring tools, or automated scaling.
+
+When designing a deployment strategy, it is important to analyze the needs of the specific application and choose tools and architectures that best fit those requirements.
+
 == Technology Stack
 
 The full stack of our example application includes:
