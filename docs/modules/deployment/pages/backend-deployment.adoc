@@ -1,0 +1,281 @@
+= Backend Web Service Deployment (Render)
+:imagesdir: ../images
+:figure-caption!:
+
+== Step 0: Prepare Your Web App Repository
+
+The backend folder structure should look like this:
+
+```text
+videostore-app/             <-- repo root (from git clone)
+├── videostore-backend/     <-- backend directory
+│   ├── pom.xml
+│   ├── Dockerfile          <-- runs Tomcat inside Docker and deploys your WAR
+│   ├── README.md
+│   └── src/
+│       └── main/
+│           ├── java/       <-- controllers, services, models, etc.
+│           │   └── com/codeforall/online/projectname/...
+│           ├── resources/
+│           │   ├── config.properties  <-- reads env variables from Render
+│           │   └── db/                <-- DB seed scripts
+│           └── webapp/
+│               └── WEB-INF/
+│                   ├── web.xml
+│                   └── spring/
+│                       ├── persistence.xml
+│                       └── spring-config.xml
+├── videostore-frontend/
+│   └── ...  <-- frontend files/folders not shown
+```
+
+== Step 1: Prepare the Dockerfile
+
+Create a `Dockerfile` inside your backend directory (same level as `pom.xml` and `src`). **Do not change `ROOT.war`**, but update the target WAR name if needed.
+
+```docker
+# ----------------------
+# Stage 1: Build WAR
+# ----------------------
+FROM maven:3.9.4-eclipse-temurin-17 AS build
+
+WORKDIR /app
+
+COPY pom.xml .
+COPY src ./src
+
+# Build WAR without running tests
+RUN mvn clean package -DskipTests
+
+# ----------------------
+# Stage 2: Deploy WAR to Tomcat
+# ----------------------
+FROM tomcat:10.1-jdk17
+
+# Remove default webapps
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+# Copy WAR from build stage
+COPY --from=build /app/target/videostore.war /usr/local/tomcat/webapps/ROOT.war
+
+# Expose default Tomcat port
+EXPOSE 8080
+
+# Start Tomcat
+CMD ["catalina.sh", "run"]
+```
+
+[NOTE]
+====
+This `Dockerfile` builds your WAR and runs it on Tomcat inside the container.
+====
+
+== Step 2: Create a Web Service on Render
+Make sure you are logged into the **same Render account** that you used for the database deployment. 
+
+This ensures you can access your backend repository and environment consistently.
+
+1. Go to **Render Dashboard → New → Web Service**.
+2. Connect your GitHub account if not already done.
+3. Install Render for your repository:
+   * Choose *Only select repositories*.
+   * Select your backend repo.
+
+=== New Web Service Page
+
+- **Source Code:** `<githubrepo>/<projectfolder>`
+- **Name:** auto-filled, can be changed
+- **Project (if visible):** leave default or select an existing project
+- **Language:** Docker
+- **Branch:** `main`
+- **Region:** pick a region near your users (e.g., Frankfurt)
+- **Root Directory:** `projectname-backend`
+
+=== Instance Type
+
+- Free tier
+
+[NOTE]
+====
+Using the free tier may result in slower deployment and API calls. The Web Service will sleep after ~15 minutes of inactivity.
+====
+
+== Step 3: Set Environment Variables (Database)
+
+In your Web Service → **Environment** section, add the database credentials from your Render Postgres instance:
+
+[cols="1,1", options="header"]
+|===
+| Name | Value
+
+| `DB_HOST` | <Render DB host>
+| `DB_NAME` | <Render DB name>
+| `DB_USERNAME` | <Render DB username>
+| `DB_PASSWORD` | <Render DB password>
+| `DB_SEED_ENABLED` | boolean value, used for SQL seeding
+|===
+
+[IMPORTANT]
+====
+Do not manually set `PORT` — Render injects a dynamic `$PORT` at runtime.
+====
+
+Spring reads these variables via `config.properties`:
+
+```xml
+db.host=${DB_HOST}
+db.name=${DB_NAME}
+db.username=${DB_USERNAME}
+db.password=${DB_PASSWORD}
+schema.auto=update
+debug.sql=false
+db.seed.enabled=${DB_SEED_ENABLED:true}
+```
+
+And `spring-config.xml` uses `PropertySourcesPlaceholderConfigurer` to load these properties:
+
+```xml
+<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+    <property name="locations">
+        <list>
+            <value>classpath:config.properties</value>
+            <value>file:/etc/secrets/openai.env</value>
+        </list>
+    </property>
+</bean>
+``` 
+=== Step 3a (Optional) Advanced: Secret Files
+
+For sensitive credentials (e.g., AI API keys), Render **Secret Files** are safer than environment variables. They are not exposed in logs, builds, or the repo, and can be rotated easily.
+
+1. Web Service → **Advanced → Secret Files → Add Secret File**
+2. Name the file (e.g., `openai.env`) and add content:
+
+```
+ai.api_key=XXXXXXXXXXXXXXXXXXXXXX
+ai.model=gpt-3.5-turbo
+ai.temperature=0.7
+```
+
+During runtime, the file is available at:
+
+```
+/etc/secrets/openai.env
+
+```
+
+==== Example usage
+
+```Java
+InputStream input = Files.newInputStream(Path.of("/etc/secrets/openai.env"));
+Properties props = new Properties();
+props.load(input);
+
+String temperature = props.getProperty("ai.temperature");
+```
+
+Or via Spring annotations:
+
+```Java
+@Value("${ai.api_key}")
+private String apiKey;
+
+@Value("${ai.model}")
+private String model;
+
+@Value("${ai.temperature}")
+private Double temperature;
+```
+
+[NOTE]
+====
+Everything under the Advanced tab can be left untouched if not using secret files.
+====
+
+== Step 4: Pre-Deployment Sanity Check
+
+Before deploying, make sure everything is set up correctly:
+
+[start=1]
+. Ensure your Dockerfile exists at the backend root.
+. Verify the WAR builds locally:
+
+[source,bash]
+----
+mvn clean package -DskipTests
+----
+[start=3]
+. Confirm the Render Environment Variables are set for the database:
+
+* `DB_HOST` → Render Postgres host (from Connections section)
+* `DB_NAME` → Postgres database name
+* `DB_USERNAME` → your DB username
+* `DB_PASSWORD` → your DB password
+* `DB_SEED_ENABLED` → `true` for first deployment, `false` afterwards
+
+[start=4]
+. Ensure your source code references the environment variables correctly:
+
+a. `persistence.xml`:
++
+[source,xml]
+----
+<!-- Data source bean using C3P0 connection pool -->
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+    <property name="driverClass" value="org.postgresql.Driver"/>
+    <property name="jdbcUrl" value="jdbc:postgresql://${db.host}/${db.name}"/>
+    <property name="user" value="${db.username}"/>
+    <property name="password" value="${db.password}"/>
+</bean>
+
+<!-- Data source initializer orchestrates the database setup -->
+<bean id="dataSourceInitializer" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="databasePopulator" ref="databasePopulator"/>
+    <property name="enabled" value="${db.seed.enabled}"/>
+</bean>
+----
+
+b. `config.properties`:
++
+[source,xml]
+----
+db.host=${DB_HOST}
+db.name=${DB_NAME}
+db.username=${DB_USERNAME}
+db.password=${DB_PASSWORD}
+schema.auto=update
+debug.sql=false
+db.seed.enabled=${DB_SEED_ENABLED:true}
+----
+
+c. `spring-config.xml` (reads from config.properties and optional Render secrets `/etc/secrets/openai.env`):
++
+[source,xml]
+----
+<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+    <property name="locations">
+        <list>
+            <value>classpath:config.properties</value>
+            <value>file:/etc/secrets/openai.env</value>
+        </list>
+    </property>
+</bean>
+----
+
+== Final Step: Deploy Your App
+
+1. Click **Deploy Web Service** in the Render dashboard.
+2. Every time you push to your `main` branch, Render will automatically deploy the latest commit.
+3. You can also trigger a manual deploy from the Render dashboard if needed.
+
+[NOTE]
+====
+After deployment, it may take a few minutes for the Web Service to start. On the free tier:
+
+- The service may be slower for the first requests.
+
+- It will sleep after ~15 minutes of inactivity.
+
+- No shell access
+====
