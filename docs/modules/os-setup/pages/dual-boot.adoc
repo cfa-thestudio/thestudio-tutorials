@@ -94,16 +94,18 @@ A bootable flash drive is a disk that can be used to boot a system to
 install an operating system.
 
 [arabic]
-. Go to https://ubuntu.com/download/desktop[https://ubuntu.com/download/desktop, window=_blank] and download Ubuntu by clicking on
-the “Download 24.04 LTS“ button.
+. Go to https://releases.ubuntu.com/noble/[https://releases.ubuntu.com/noble/, window=_blank] and download Ubuntu by clicking on
+the “64-bit PC (AMD64) desktop image“ hyperlink.
 +
 .Download Ubuntu
 image::get-ubuntu-desktop.png[Download Ubuntu, 90%]
 +
-We recommend the LTS version because of the longer support option.
+We recommend using the LTS version of Ubuntu for its long-term support and stability, specifically Ubuntu 24 LTS. 
++
+Although Ubuntu 26 LTS is already available, it is still relatively new and may not yet be fully supported by all the tools used in this course. To ensure compatibility and a smooth setup experience, we strongly recommend sticking with Ubuntu 24 LTS.
 +
 When the download is finished, go to the Downloads folder and confirm
-that you have downloaded the file `ubuntu-24.04.desktop-amd64.iso`.
+that you have downloaded the file `ubuntu-24.04.4-desktop-amd64.iso`.
 . Go to https://etcher.balena.io/[https://etcher.balena.io/, window=_blank] and click on “Download Etcher“. You
 will use Etcher to create a bootable USB flash drive, by transferring
 the disk image containing Ubuntu to your USB flash drive.
