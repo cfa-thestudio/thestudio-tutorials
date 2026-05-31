@@ -1,0 +1,85 @@
+= Frontend Deployment on Netlify
+:imagesdir: ../images
+:figure-caption!:
+
+This page shows how to deploy the **frontend SPA** of the Video Store application using **Netlify**. 
+Following these steps ensures that your HTML, CSS, and JS modules are properly served and client-side routing works.
+
+== Step 0: Prepare your GitHub Repository
+
+[source,text]
+----
+videostore-app/  <-- GitHub repository
+├── videostore-frontend/   <-- frontend directory
+│   ├── index.html
+│   ├── _redirects         <-- fallback to index page
+│   ├── styles.css
+│   ├── routes.js
+│   ├── router.js
+│   ├── services/
+│   │   ├── jokeService.js
+│   │   ├── movieService.js
+│   │   └── customerService.js
+│   ├── controllers/
+│   │   ├── moviesController.js
+│   │   ├── homeController.js
+│   │   ├── customersController.js
+│   │   └── jokeController.js
+│   └── views/
+│       ├── index.js
+│       ├── pages/
+│       │   ├── joke.js
+│       │   ├── movies.js
+│       │   ├── customers.js
+│       │   └── home.js
+│       └── components/
+│           └── header.js
+└── videostore-backend/
+    └── ...  <-- backend files/folders not shown for this example
+----
+
+== Step 1: Create a `_redirects` file
+
+1. Inside your frontend folder, create the following file:
+
+[source,html]
+----
+/*    /index.html   200
+----
+
+In SPAs, all routing is handled **on the client side** using JavaScript. The `_redirects` file ensures that any direct URL visit (like `/movies`) serves `index.html`, letting your frontend router display the correct page.
+
+== Step 2: Create Netlify Account
+
+1. Go to https://www.netlify.com/  
+2. Sign up or log in with the same **Render account credentials** you used for the backend deployment, ensuring consistency in team management.  
+3. Fill in your name and select any options.  
+4. Pick a team name in the **What is the name of your team?** section (e.g., `videostore`).  
+5. Click **Continue to deploy**.
+
+After completing this step, you should see the main deployment dashboard for your team.
+
+== Step 3: Connect to Git provider and Repository
+
+1. Select **GitHub**.  
+2. A page will open prompting you to **Install Netlify**.  
+3. Select your GitHub account.  
+4. **Repository access:** Only select the repositories you want to deploy.  
+5. Click **Install**.
+
+== Final Step: Configure Project and Deploy
+
+- **Team:** select the team you created in Step 2.  
+- **Project name:** e.g., `videostore`.  
+- **Build settings:**  
+  * Branch: `main`  
+  * Base directory: your frontend folder (`videostore-frontend`)  
+- Leave all other settings as default.  
+- No environment variables are required for this deployment.  
+
+Click **Deploy** to start the deployment process. Netlify will build your project and provide a live site URL when ready.
+
+[NOTE]
+* The first requests may be slightly slower as the CDN caches your assets.
+* The SPA will handle client-side routing automatically using `_redirects`.  
+* The live site URL is available on the dashboard once deployment completes.

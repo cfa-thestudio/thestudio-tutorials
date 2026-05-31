@@ -1,0 +1,68 @@
+= Database Deployment (Render)
+:imagesdir: ../images
+:figure-caption!:
+
+== Create a Render Account
+
+. Go to https://render.com
+. Click *Sign Up*
++
+--
+* You can sign up using *Google*, *GitHub*, or *email*. (GitHub recommended so Render can grab your repository)
+--
+. Verify your account via email.
+. Log in to the Render dashboard.
+
+== PostgreSQL Database on Render
+
+We will keep the database on the same hosting platform as the backend service to simplify configuration.
+
+[NOTE]
+====
+When using Render’s free tier, database instances are intended for development and educational use, and they may be reset or removed over time.
+====
+
+. In the Render dashboard, click *New → PostgreSQL*.
+. Fill in the fields:
++
+--
+* *Name*: a unique name for your instance (for example `videostore-db`)
+* *Project (if visible)*: leave the default or select an existing project (for example `My Project / Production`)
+* *Database*: the PostgreSQL database name your application will connect to (for example `videostore`)
+* *User*: the database username (for example `videostore_user`)
+* *Region*: select the region closest to you (for example `EU`)
+* *Postgres Version*: select `15`
+* *Datadog API Key*: leave blank
+* *Datadog Region*: leave blank
+* *Plan*: select the *Free* tier
+--
+. Click *Create Database*.
+
+After creation, Render will display the database credentials under the *Connections* section:
+
+* *Hostname* (`DB_HOST`)
+* *Database* (`DB_NAME`)
+* *Username* (`DB_USERNAME`)
+* *Password* (`DB_PASSWORD`)
+
+Keep this tab open. We will use these connection values later to configure *environment variables* for the backend web service.
+
+[NOTE]
+====
+It may take a few minutes for Render to create the storage volume.
+
+Check the *Storage* row to see the current status.
+====
+
+== Test the Database Connection
+
+Once the database status is *Available*:
+
+. Navigate to:
++
+`<Project Name> → <db_name>`
+. Open the *Connections* section.
+. Copy the *PSQL Command*.
+. Paste it into your local terminal and run it.
+
+If the connection succeeds, you should be logged into the PostgreSQL database.
